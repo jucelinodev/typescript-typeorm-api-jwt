@@ -8,7 +8,7 @@ const startTypeORM = async () => {
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_DATABASE,
-      entities: [__dirname + '/../src/app/entities/**/*.{ts,js}'],
+      entities: [__dirname + '/../app/entities/**/*.{ts,js}'],
       logging: true,
       synchronize: true
     })
