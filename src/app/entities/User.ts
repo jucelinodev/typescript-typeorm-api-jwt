@@ -3,8 +3,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate
 } from 'typeorm'
+
+import bcrypt from 'bcrypt'
 
 @Entity()
 export class User {
@@ -27,4 +31,12 @@ export class User {
   @Column()
   @UpdateDateColumn()
   updatedAt!: Date
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async passwordHash() {
+    if (this.password) {
+      this.password = await bcrypt.hash(this.password, 8)
+    }
+  }
 }
