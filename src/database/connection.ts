@@ -1,17 +1,10 @@
 import { createConnection } from 'typeorm'
 
+import { connectionOptions } from '../config/database'
+
 const startTypeORM = async () => {
   try {
-    await createConnection({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      database: process.env.DB_DATABASE,
-      entities: [__dirname + '/../app/entities/**/*.{ts,js}'],
-      logging: true,
-      synchronize: true
-    })
+    await createConnection(connectionOptions)
     // tslint:disable-next-line: no-console
     console.log('TypeORM running')
   } catch (error) {

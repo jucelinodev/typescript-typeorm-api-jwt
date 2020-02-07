@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
+import jwt, { Secret } from 'jsonwebtoken'
 import UserService from '../services/UserService'
+
+import authConfig from '../../config/auth'
 
 class SessionController {
   async store(req: Request, res: Response): Promise<Response> {
@@ -18,7 +20,9 @@ class SessionController {
       })
     }
     const { id } = user
-    const token = jwt.sign({ id }, 'secret', { expiresIn: '1d' })
+    const token = jwt.sign({ id }, authConfig.secret as Secret, {
+      expiresIn: '1d'
+    })
 
     return res.json({
       success: true,

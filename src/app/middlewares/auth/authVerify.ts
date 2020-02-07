@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
-import jwt from 'jsonwebtoken'
+import jwt, { Secret } from 'jsonwebtoken'
+
+import authConfig from '../../../config/auth'
 
 export interface IDecoded {
   id: string
@@ -16,7 +18,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
   const [, token] = authHeader.split(' ')
 
   try {
-    const decoded = jwt.verify(token, 'secret') as IDecoded
+    const decoded = jwt.verify(token, authConfig.secret as Secret) as IDecoded
 
     req.userId = decoded.id
 
