@@ -1,4 +1,9 @@
-const teste: string = 'teste'
+import server from './server'
 
-// tslint:disable-next-line: no-console
-console.log(teste)
+function main() {
+  server.listen(3000)
+  // tslint:disable-next-line: no-console
+  console.log('Server running in port 3000')
+}
+
+main()
