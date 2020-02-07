@@ -2,6 +2,7 @@ import { Router } from 'express'
 
 import UserController from './app/controllers/UserController'
 import SessionController from './app/controllers/SessionController'
+import ProfileController from './app/controllers/ProfileControler'
 
 import userValidator from './app/middlewares/validators/userValidator'
 import sessionValidator from './app/middlewares/validators/sessionValidator'
@@ -15,8 +16,6 @@ router.post('/session', sessionValidator, SessionController.store)
 
 router.use(authVerify)
 
-router.get('/test', (req, res) => {
-  res.json({ ok: true })
-})
+router.get('/profile', ProfileController.show)
 
 export default router
