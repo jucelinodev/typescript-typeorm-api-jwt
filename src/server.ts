@@ -1,3 +1,9 @@
+import * as dontenv from 'dotenv'
+dontenv.config()
+
+import 'reflect-metadata'
+import './database/connection'
+
 import express, { Application } from 'express'
 
 import routes from './routes'
