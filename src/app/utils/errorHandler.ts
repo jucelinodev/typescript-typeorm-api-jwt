@@ -7,7 +7,7 @@ const handlerError = async (
   res: Response,
   next: NextFunction
 ) => {
-  if ('delelopment') {
+  if ('development') {
     const errors = await new Youch(err, req).toJSON()
 
     res.status(400).json(errors)
